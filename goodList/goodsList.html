@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../js/jquery-3.2.1.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+	<script src="../js/bootstrap.js"></script>
+</head>	
+<style type="text/css">
+	.left{
+		display: block;
+		float: left;
+		width: 80px;
+		height: 100px;
+	}
+	.right{
+		display: block;
+		margin-left: 90px;
+		height: 100px;
+	}
+	.number{
+		width: 40px;
+	}
+
+</style>
+<body class="container"  >
+	<p>购物清单</p>
+	<div id="app">
+		<table class="table" >
+				<tr>
+					<td>
+					<span v-if="isSelectAll==false"  @click="selectAll(),select=!select"><img src="../image/no.png">全选</span>
+					<span v-else="isSelectAll==true"  @click="selectNone(),select=!select"><img src="../image/yes.png">全选</span>
+					</td>
+					<td>商品</td>
+					<td>数量</td>
+					<td>单价(元)</td>
+					<td>金额(元)</td>
+					<td>操作</td>
+				</tr>
+				<tr v-for="goods in goodsList">
+					<td>
+						<span v-if="goods.select==false"  @click="goods.select=!goods.select"><img src="../image/no.png"></span>
+						<span v-else="gooods.select==true"  @click="goods.select=!goods.select"><img src="../image/yes.png"></span>
+					</td>
+					<td>
+							<div class="left"><img src="../image/3.jpeg" style="width: 100;height: 100%;"></div>
+							<div class="right">
+								<h5>{{goods.name}}</h5>
+								<p>品牌：{{goods.brand}}&nbsp;&nbsp;产地:{{goods.location}}</p>
+								<p>规格/纯度:{{goods.size}}&nbsp;&nbsp;起定量:{{goods.number}}</p>
+								<p>配送仓储:{{goods.send}}</p>
+							</div>
+					</td>
+					<td>
+						<a class="btn" @click="goods.num--">-</a>
+						<input type="text" class="number" v-model="goods.num" style="text-align: center;"></input>
+						<a class="btn" @click="goods.num++">+</a>
+					</td>
+					<td>${{goods.price}}</td>
+					<td>${{goods.num*goods.price}}</td>
+					<td><a class="btn btn-danger" @click="deleteOne(index)">删除</a></td>
+				</tr>
+		</table>
+		<p style="float: left;"><a class="btn" @click="deleteGoods()">删除选中商品</a></p>
+		<p style="float: right;">您挑选了{{getTotal.totalNum}}商品，共计{{getTotal.totalPrice}}元</p>
+	</div>
+<script src="../js/vue.js"></script>
+<script src="../mainJS/goodsList.js"></script>
+</body>
+</html>
