@@ -5,7 +5,7 @@ img{
 .smallTitle{
 	border-bottom: 2px solid blue;
 }
-.fa-ul li{
+#job li{
 	float: left;
 	margin-left: 7%;
 }
