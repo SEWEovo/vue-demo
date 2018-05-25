@@ -1,9 +1,10 @@
-var app = new Vue({
-  el: '#contact',
-  data:{
-  	contactList:[
-  	{
-  		name:'可乐',
-  		brand:'可口可乐公司',
-  	},
-  
+$(function () {
+$("#image").click(function(){
+	$("#image").toggleClass("img-circle");
+
+});
+
+$(".fa-star").hover(function(){
+	$(this).toggleClass("fa-star-o");
+});
+})
